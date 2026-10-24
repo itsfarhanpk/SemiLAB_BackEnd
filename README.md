@@ -1,0 +1,35 @@
+# SemiLab Backend
+
+Flask and NumPy scientific API for the SemiLab interactive semiconductor physics laboratory.
+
+## Run locally
+
+```powershell
+py -3.11 -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+$env:FRONTEND_ORIGINS="http://localhost:5173"
+python app.py
+```
+
+The API runs at `http://localhost:5000`.
+
+## Test
+
+```powershell
+pytest tests
+```
+
+## API
+
+- `GET /api/health` — backend status.
+- `GET /api/materials` — supported materials and documented model assumptions.
+- `POST /api/simulate` — accepts `material`, `Na`, `Nd`, `temperature`, and `appliedVoltage`.
+
+## Model scope
+
+The API is the source of truth for the scientific outputs. It implements an ideal abrupt one-dimensional p–n junction using SI units internally, material-specific parameters for Si, Ge, and GaAs, a depletion approximation, electric-field and charge-density profiles, electrostatic potential, simplified band edges, and normalized ideal-diode current.
+
+The model includes validity warnings near the built-in potential. The diode curve is normalized to `I/I0`; it does not claim absolute amperes because device geometry and a saturation-current model are outside version 1.
+
+Set `FRONTEND_ORIGINS` to the deployed frontend origin when hosting the API.
