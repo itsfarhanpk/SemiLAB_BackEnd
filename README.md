@@ -32,4 +32,4 @@ The API is the source of truth for the scientific outputs. It implements an idea
 
 The model includes validity warnings near the built-in potential. The diode curve is normalized to `I/I0`; it does not claim absolute amperes because device geometry and a saturation-current model are outside version 1.
 
-Set `FRONTEND_ORIGINS` to the deployed frontend origin when hosting the API.
+Set `FRONTEND_ORIGINS` to the deployed frontend origin when hosting the API. The default allows both local development and `https://semi-lab-front-end.vercel.app`.
