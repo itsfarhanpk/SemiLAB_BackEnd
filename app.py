@@ -11,8 +11,8 @@ from physics.materials import MATERIALS, get_material
 
 def create_app() -> Flask:
     app = Flask(__name__)
-    default_origins = "http://localhost:5173,https://semi-lab-front-end.vercel.app"
-    origins = os.getenv("FRONTEND_ORIGINS", default_origins).split(",")
+    configured_origins = os.getenv("FRONTEND_ORIGINS", "http://localhost:5173").split(",")
+    origins = configured_origins + ["https://semi-lab-front-end.vercel.app"]
     CORS(app, origins=[origin.strip() for origin in origins if origin.strip()])
 
     @app.get("/api/health")
